@@ -81,8 +81,8 @@ function _M:act()
 	-- Cooldown talents
 	self:cooldownTalents()
 	-- Regen resources
-	self:regenLife() --Amberites don't regenerate, but this is needed to fix life/maxlife calculations. Just make sure all life regen is at 0.
-	-- self:regenResources() --I might add this back, but update it so that it only regens if you didn't act (Wait, or some immobilize effect, regenerates MP)
+	self:regenLife() --WorldWeavers don't regenerate, but this is needed to fix life/maxlife calculations. Just make sure all life regen is at 0.
+	-- self:regenResources() --I don't want MP. Spells are single-shot effects.
 	-- Compute timed effects
 	self:timedEffects()
 
@@ -107,17 +107,16 @@ function _M:tooltip()
 	return ([[%s%s
 #00ffff#Level: %d
 #ff0000#HP: %d /(%d)
-Stats: %d 
+Damage: %d 
+%s
 %s]]):format(
 	self:getDisplayString(),
 	self.name,
 	self.level,
 	self.life, self.max_life,
-	--self:getStr(),
-	self:getDam(),
-	--self:getDex(),
-	--self:getCon(),
-	self.desc or ""
+	self.combat.dam,
+	self.desc or "",
+	self.faction or ""
 	)
 end
 
@@ -128,29 +127,14 @@ end
 function _M:die(src)
 	engine.interface.ActorLife.die(self, src)
 
-	-- Gives the killer some exp for the kill
-	if src and src.gainExp then
-		src:gainExp(self:worthExp(src))
-	end
-
 	return true
 end
 
 function _M:levelup()
-	--self.max_life = self.max_life + 2
-
-	--self:incMaxPower(3)
-
-	-- Heal upon new level
-	--self.life = self.max_life
-	--self.power = self.max_power
 end
 
 --- Notifies a change of stat value
 function _M:onStatChange(stat, v)
-	--if stat == self.STAT_CON then
-		--self.max_life = self.max_life + 2
-	--end
 end
 
 function _M:attack(target)
@@ -188,7 +172,7 @@ function _M:preUseTalent(ab, silent)
 		elseif ab.mode == "sustained" and self:isTalentActive(ab.id) then
 			game.logSeen(self, "%s deactivates %s.", self.name:capitalize(), ab.name)
 		else
-			game.logSeen(self, "%s uses %s.", self.name:capitalize(), ab.name)
+			--game.logSeen(self, "%s uses %s.", self.name:capitalize(), ab.name) -- was causing duplicate messages in the log.
 		end
 	end
 	return true
@@ -200,26 +184,14 @@ end
 -- @param ret the return of the talent action
 -- @return true to continue, false to stop
 function _M:postUseTalent(ab, ret)
-	if not ret then return end
-
-	self:useEnergy()
-
-	if ab.mode == "sustained" then
-		if not self:isTalentActive(ab.id) then
-			if ab.sustain_power then
-				self.max_power = self.max_power - ab.sustain_power
-			end
-		else
-			if ab.sustain_power then
-				self.max_power = self.max_power + ab.sustain_power
-			end
-		end
-	else
-		if ab.power then
-			self:incPower(-ab.power)
-		end
+	
+	--I want the ID of the talent here, not the table.
+	if(ab.permanent ~= true) then
+		self:unlearnTalent(ab.id, 1)
 	end
-
+	
+	if not ret then return end
+	self:useEnergy(game.energy_to_act)
 	return true
 end
 
@@ -261,19 +233,19 @@ function _M:canSee(actor, def, def_pct)
 	if not actor then return false, 0 end
 
 	-- Check for stealth. Checks against the target cunning and level
-	if actor:attr("stealth") and actor ~= self then
-		local def = self.level / 2 + self:getCun(25)
-		local hit, chance = self:checkHit(def, actor:attr("stealth") + (actor:attr("inc_stealth") or 0), 0, 100)
-		if not hit then
-			return false, chance
-		end
-	end
+	--if actor:attr("stealth") and actor ~= self then
+		--local def = self.level / 2 + self:getCun(25)
+		--local hit, chance = self:checkHit(def, actor:attr("stealth") + (actor:attr("inc_stealth") or 0), 0, 100)
+		--if not hit then
+		--	return false, chance
+		--end
+	--end
 
-	if def ~= nil then
-		return def, def_pct
-	else
+	--if def ~= nil then
+		--return def, def_pct
+	--else
 		return true, 100
-	end
+	--end
 end
 
 --- Can the target be applied some effects

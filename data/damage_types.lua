@@ -51,3 +51,11 @@ newDamageType{
 newDamageType{
 	name = "acid", type = "ACID", text_color = "#GREEN#",
 }
+
+newDamageType{
+	name = "fire", type = "FIRE", text_color = "#RED#",
+}
+
+newDamageType{
+	name = "mana", type = "MANA", text_color = "#BLUE#",
+}

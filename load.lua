@@ -45,15 +45,11 @@ ActorTemporaryEffects:loadDefinition("/data/timed_effects.lua")
 ActorResource:defineResource("Power", "power", nil, "power_regen", "Power represent your ability to use special talents.")
 
 -- Actor stats
---ActorStats:defineStat("Strength",	"str", 10, 1, 100, "Strength defines your character's ability to apply physical force. It increases your melee damage, damage with heavy weapons, your chance to resist physical effects, and carrying capacity.")
---ActorStats:defineStat("Dexterity",	"dex", 10, 1, 100, "Dexterity defines your character's ability to be agile and alert. It increases your chance to hit, your ability to avoid attacks and your damage with light weapons.")
---ActorStats:defineStat("Constitution",	"con", 10, 1, 100, "Constitution defines your character's ability to withstand and resist damage. It increases your maximum life and physical resistance.")
-ActorStats:defineStat("Damage", "dam", 8, 1, 1024, "Damage is raw melee damage. You do this much damage with every melee hit.") --Amberites start with 8. 
+ActorStats:defineStat("Damage", "dam", 8, 1, 1024, "Damage is raw melee damage. You do this much damage with every melee hit.") --Worldweavers start with 8. 
 --HP is Life in default terms, set with self.max_life and call a function on action to update stuff.
 
 --Damage notes: 
 --Damage is 1 for weakest minions, 2 and 4 are for stronger minions. 8 is the starting point for Worldweavers, and can get boosted from there (no longer stuck to the 2x pattern)
-
 
 -- Actor AIs
 ActorAI:loadDefinition("/engine/ai/")

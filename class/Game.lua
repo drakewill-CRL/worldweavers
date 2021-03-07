@@ -69,7 +69,7 @@ function _M:run()
 	self.logPlayer = function(e, style, ...) if e == self.player then self.log(style, ...) end end
 	self.logNewest = function() return self.logdisplay:getNewestLine() end
 
-	self.log(self.flash.GOOD, "Welcome to #00FF00#the AmberRL module!")
+	self.log(self.flash.GOOD, "Welcome to #00FF00#the WorldWeavers module!")
 
 	-- Setup inputs
 	self:setupCommands()
@@ -105,6 +105,7 @@ function _M:newGame()
 		self.paused = true
 		self.creating_player = false
 		print("[PLAYER BIRTH] resolved!")
+		self:registerDialog(require("mod.dialogs.CharacterSheet").new(self.player))
 	end)
 	self:registerDialog(birth)
 end

@@ -88,9 +88,8 @@ function _M:act()
 	end
 
 	local win = true
-
 	for i,v in pairs(game.level.entities) do
-		if (v.player == nil or v.player == false) then
+		if (v.faction ~= self.faction) then --player summons should not block winning the game.
 			win = false
 		end
 	end

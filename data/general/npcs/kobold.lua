@@ -19,83 +19,83 @@
 
 local Talents = require("engine.interface.ActorTalents")
 
-newEntity{
-	define_as = "BASE_NPC_KOBOLD",
-	type = "humanoid", subtype = "kobold",
-	display = "k", color=colors.WHITE,
-	desc = _t[[Ugly and green!]],
+-- newEntity{
+-- 	define_as = "BASE_NPC_KOBOLD",
+-- 	type = "humanoid", subtype = "kobold",
+-- 	display = "k", color=colors.WHITE,
+-- 	desc = _t[[Ugly and green!]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
-	--stats = { str=5, dex=5, con=5 },
-	combat_armor = 0,
-}
+-- 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+-- 	--stats = { str=5, dex=5, con=5 },
+-- 	combat_armor = 0,
+-- }
 
-newEntity{ base = "BASE_NPC_KOBOLD",
-	name = "kobold warrior", color=colors.GREEN,
-	level_range = {1, 4}, exp_worth = 1,
-	rarity = 4,
-	max_life = resolvers.rngavg(5,9),
-	combat = { dam=2 },
-}
+-- newEntity{ base = "BASE_NPC_KOBOLD",
+-- 	name = "kobold warrior", color=colors.GREEN,
+-- 	level_range = {1, 4}, exp_worth = 1,
+-- 	rarity = 4,
+-- 	max_life = resolvers.rngavg(5,9),
+-- 	combat = { dam=2 },
+-- }
 
-newEntity{ base = "BASE_NPC_KOBOLD",
-	name = "armoured kobold warrior", color=colors.AQUAMARINE,
-	level_range = {6, 10}, exp_worth = 1,
-	rarity = 4,
-	max_life = resolvers.rngavg(10,12),
-	combat_armor = 3,
-	combat = { dam=5 },
-}
-
-
-newEntity{
-	define_as = "BASE_GOBLIN",
-	type = "humanoid", subtype = "goblin",
-	name = "goblin",
-	display = "g", color=colors.GREEN,
-	desc = _t[[Ugly and green!]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
-	--stats = { str=5, dex=5, con=5 },
-	combat_armor = 0,
-
-	level_range = {1, 1}, exp_worth = 0,
-	rarity = 1,
-	max_life = 12,
-	combat = { dam=1 },
-}
-
-newEntity{
-	define_as = "BASE_DIREWOLF",
-	type = "canine", subtype = "dire wolf",
-	name = "dire wolf",
-	display = "w", color=colors.GREEN,
-	desc = _t[[Big and fluffy!]],
-
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
-	--stats = { str=5, dex=5, con=5 },
-	combat_armor = 0,
-
-	level_range = {1, 1}, exp_worth = 0,
-	rarity = 1,
-	max_life = 25,
-	combat = { dam=2 },
-}
+-- newEntity{ base = "BASE_NPC_KOBOLD",
+-- 	name = "armoured kobold warrior", color=colors.AQUAMARINE,
+-- 	level_range = {6, 10}, exp_worth = 1,
+-- 	rarity = 4,
+-- 	max_life = resolvers.rngavg(10,12),
+-- 	combat_armor = 3,
+-- 	combat = { dam=5 },
+-- }
 
 
-newEntity{
-	define_as = "BASE_DRAGON",
-	type = "dragon", subtype = "dragon",
-	name = "dragon",
-	display = "D", color=colors.GREEN,
-	desc = _t[[Big and Green!]],
+-- newEntity{
+-- 	define_as = "BASE_GOBLIN",
+-- 	type = "humanoid", subtype = "goblin",
+-- 	name = "goblin",
+-- 	display = "g", color=colors.GREEN,
+-- 	desc = _t[[Ugly and green!]],
 
-	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
-	--stats = { str=5, dex=5, con=5 },
-	combat_armor = 0,
+-- 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+-- 	--stats = { str=5, dex=5, con=5 },
+-- 	combat_armor = 0,
 
-	level_range = {1, 1}, exp_worth = 0,
-	rarity = 1,
-	max_life = 50,
-	combat = { dam=4 },
-}
+-- 	level_range = {1, 1}, exp_worth = 0,
+-- 	rarity = 1,
+-- 	max_life = 12,
+-- 	combat = { dam=1 },
+-- }
+
+-- newEntity{
+-- 	define_as = "BASE_DIREWOLF",
+-- 	type = "canine", subtype = "dire wolf",
+-- 	name = "dire wolf",
+-- 	display = "w", color=colors.GREEN,
+-- 	desc = _t[[Big and fluffy!]],
+
+-- 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+-- 	--stats = { str=5, dex=5, con=5 },
+-- 	combat_armor = 0,
+
+-- 	level_range = {1, 1}, exp_worth = 0,
+-- 	rarity = 1,
+-- 	max_life = 25,
+-- 	combat = { dam=2 },
+-- }
+
+
+-- newEntity{
+-- 	define_as = "BASE_DRAGON",
+-- 	type = "dragon", subtype = "dragon",
+-- 	name = "dragon",
+-- 	display = "D", color=colors.GREEN,
+-- 	desc = _t[[Big and Green!]],
+
+-- 	ai = "dumb_talented_simple", ai_state = { talent_in=3, },
+-- 	--stats = { str=5, dex=5, con=5 },
+-- 	combat_armor = 0,
+
+-- 	level_range = {1, 1}, exp_worth = 0,
+-- 	rarity = 1,
+-- 	max_life = 50,
+-- 	combat = { dam=4 },
+-- }

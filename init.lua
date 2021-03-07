@@ -17,15 +17,15 @@
 -- Nicolas Casalini "DarkGod"
 -- darkgod@te4.org
 
-name = "AmberRL Test"
-long_name = "WorldWeaver test setup"
-short_name = "amber"
+name = "WorldWeavers Duel"
+long_name = "WorldWeavers Duel"
+short_name = "worldweavers"
 author = { "Cerol", "cerol@cerol.org" }
 homepage = "http://te4.org/modules:example"
 version = {1,0,0}
 engine = {1,7,2,"te4"}
 description = [[
-This is *NOT* a game yet, just an example/template to make your own using the T-Engine4.
+7DRL 2021 entry. Jump straight to the last boss, and fight to save the multiverse!
 ]]
 starter = "mod.load"
 show_only_on_cheat = false -- Example modules are not shown to normal players

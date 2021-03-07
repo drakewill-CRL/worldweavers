@@ -3,7 +3,7 @@ local Talents = require("engine.interface.ActorTalents")
 newEntity{
 	define_as = "BASE_RIVAL",
 	type = "humanoid", subtype = "worldweaver",
-    name="Rival", --Make a Resolver to pick a random name
+    name="Rival", --Make a Resolver to pick a random name?
 	display = "@", color=colors.RED,
 	desc = _t[[You rival! They're trying to conquer the multiverse!]],
 
@@ -16,5 +16,4 @@ newEntity{
 	max_life = 100,
 	combat = { dam=8 },
     --TODO: resolver for random bonuses
-    --TODO: a YOU WIN message upon their death.
 }

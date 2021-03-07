@@ -21,6 +21,7 @@ require "engine.class"
 local ActorAI = require "engine.interface.ActorAI"
 local Faction = require "engine.Faction"
 local Dialog = require "engine.ui.Dialog"
+local ActorTalents = require "engine.interface.ActorTalents"
 require "mod.class.Actor"
 
 module(..., package.seeall, class.inherit(mod.class.Actor, engine.interface.ActorAI))
@@ -63,12 +64,39 @@ function _M:tooltip()
 	self.uid)
 end
 
--- function _M:die(src)
--- 	engine.interface.ActorLife.die(self, src)
+--Hook called after entity is resolved. Using this to apply talents to rivals.
+function _M:addedToLevel(level, x, y)
+	game.log("Created NPC!")
+	if (self.subtype ~= "worldweaver") then
+		return
+	end
+	--i think i need a list of talents to look through.
+	local talentRef = {}
 
--- 	Dialog.simplePopup("Victory!", "You have saved the multiverse!")
+	local talentcounter = 1
+	for k in pairs(game.player.talents_def) do
+		talentRef[talentcounter] = k
+		talentcounter = talentcounter + 1
+	end
 
+	for  i = 1, game.player.rivalTalents do
+		local picked = false
+		while (picked == false) do
+			local talentID = rng.range(1, #talentRef)  --probably a better place for that value.
+		 	if (self:knowTalent(talentRef[talentID])) then
+		 		--re-roll
+		 	else
+		 		--learn it
+		 		self:learnTalent(talentRef[talentID], 1)
+		 		picked = true
+				 game.log("Rival learned " .. talentRef[talentID])
+		 	end
+		end
+	end
+	
+end
 
-
--- 	return true
--- end
+ function _M:die(src)
+ 	engine.interface.ActorLife.die(self, src)
+ 	return true
+ end

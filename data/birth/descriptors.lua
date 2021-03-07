@@ -36,13 +36,11 @@ newBirthDescriptor{
 	name = "Easy",
 	desc =
 	{
-		"You get 5 points to spend on powerups",
+		"You get 5 points to spend on talents. You opponent will have 2 random talents.",
 	},
 	copy = {
 		charPoints = 5,
-	},
-	talents = {
-		[ActorTalents.T_KICK]=1,
+		rivalTalents = 2,
 	},
 } 
 
@@ -51,12 +49,25 @@ newBirthDescriptor{
 	name = "Normal",
 	desc =
 	{
-		"You get 3 points to spend on powerups",
-	},
-	talents = {
-		[ActorTalents.T_ACID_SPRAY]=1,
+		"You get 3 points to spend on talents, as does your opponent.",
 	},
 	copy = {
 		charPoints = 3,
+		rivalTalents = 3,
 	},
+	
+}
+
+newBirthDescriptor{
+	type = "difficulty",
+	name = "Hard",
+	desc =
+	{
+		"You get 2 points for talents, but your rival will have 4 random ones.",
+	},
+	copy = {
+		charPoints = 2,
+		rivalTalents = 4,
+	},
+	
 }
